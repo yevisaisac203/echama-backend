@@ -1,3 +1,7 @@
-from django.shortcuts import render
+from rest_framework import viewsets
+from .models import Contribution  # or your contribution model
+from .serializers import ContributionSerializer  # Ensure this import is correct
 
-# Create your views here.
+class ContributionViewSet(viewsets.ModelViewSet):
+    queryset = Contribution.objects.all()
+    serializer_class = ContributionSerializer

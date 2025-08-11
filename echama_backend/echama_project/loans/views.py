@@ -1,3 +1,7 @@
-from django.shortcuts import render
+from rest_framework import viewsets
+from .models import Loan  # Import your Loan model
+from .serializers import LoanSerializer  # Ensure this import is correct
 
-# Create your views here.
+class LoanViewSet(viewsets.ModelViewSet):
+    queryset = Loan.objects.all()
+    serializer_class = LoanSerializer

@@ -18,6 +18,19 @@ from django.contrib import admin
 from django.urls import path
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from django.contrib import admin
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
+from users.views import UserViewSet
+from groups.views import GroupViewSet
+from contributions.views import ContributionViewSet
+from loans.views import LoanViewSet
+
+router = DefaultRouter()
+router.register(r'users', UserViewSet)
+router.register(r'groups', GroupViewSet)
+router.register(r'contributions', ContributionViewSet)
+router.register(r'loans', LoanViewSet)
 
 @api_view(['GET'])
 def test_api(request):
@@ -26,4 +39,8 @@ def test_api(request):
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/ping/', test_api),
+    path('api/users/', include('users.urls')),
+    path('api/groups/', include('groups.urls')), 
+    path('api/contributions/', include('contributions.urls')),
+    path('api/loans/', include('loans.urls'))
 ]
