@@ -1,4 +1,4 @@
-📌 eChama Backend API
+ eChama Backend API
 
 A backend system for managing digital chamas (informal savings & investment groups). Built with Django REST Framework, this API supports:
 
@@ -12,25 +12,25 @@ Loan requests & approvals
 
 Role-based access & permissions
 
-🚀 Features
+Features
 
-✅ User authentication & authorization (JWT)
+.User authentication & authorization (JWT)
 
-✅ CRUD operations for Members, Groups, Contributions, Loans
+. CRUD operations for Members, Groups, Contributions, Loans
 
-✅ Validation rules for chama operations
+.Validation rules for chama operations
 
-✅ API documentation (Swagger & Redoc)
+.API documentation (Swagger & Redoc)
 
-✅ Unit tests for core functionality
+. Unit tests for core functionality
 
-✅ Configurable with PostgreSQL (production) or SQLite (development)
+.Configurable with PostgreSQL (production) or SQLite (development)
 
-🛠️ Tech Stack
+Tech Stack
 
 Backend Framework: Django 5 + Django REST Framework
 
-Database: SQLite (dev) / PostgreSQL (prod)
+✓Database: SQLite (dev) / PostgreSQL (prod)
 
 Authentication: JSON Web Tokens (djangorestframework-simplejwt)
 
@@ -38,9 +38,8 @@ Documentation: drf-yasg (Swagger & ReDoc)
 
 Testing: Django Test Framework + Pytest (optional)
 
-Deployment Ready: Docker + Gunicorn + Nginx
-
-📂 Project Structure
+Deployment Ready: Docker + Gunicorn + Nginx  
+  Project Structure
 eChama-backend/
 │── api/                # Core app (users, groups, contributions, loans)
 │── echama/             # Project settings & configurations
@@ -49,31 +48,31 @@ eChama-backend/
 │── manage.py           # Django entry point
 │── README.md           # Project documentation
 
-⚙️ Installation & Setup
-1️⃣ Clone the Repository
+ Installation & Setup
+1 Clone the Repository
 git clone https://github.com/<your-username>/echama-backend.git
 cd echama-backend
 
-2️⃣ Create a Virtual Environment & Install Dependencies
+2 Create a Virtual Environment & Install Dependencies
 python -m venv venv
 source venv/bin/activate   # On Mac/Linux
 venv\Scripts\activate      # On Windows
 pip install -r requirements.txt
 
-3️⃣ Run Migrations
+3 Run Migrations
 python manage.py migrate
 
-4️⃣ Create a Superuser
+4 Create a Superuser
 python manage.py createsuperuser
 
-5️⃣ Run Development Server
+5 Run Development Server
 python manage.py runserver
 
 
 Your API will be available at:
-👉 http://127.0.0.1:8000/api/
+ http://127.0.0.1:8000/api/
 
-🔑 Authentication
+Authentication
 
 This project uses JWT authentication.
 
@@ -90,18 +89,18 @@ Example Request:
   "password": "password123"
 }
 
-📖 API Documentation
+ API Documentation
 
 Swagger UI:
-👉 http://127.0.0.1:8000/swagger/
+ http://127.0.0.1:8000/swagger/
 
 Redoc UI:
-👉 http://127.0.0.1:8000/redoc/
+ http://127.0.0.1:8000/redoc/
 
-✅ Running Tests
+Running Tests
 python manage.py test
 
-🐳 Docker Setup (Optional)
+ Docker Setup (Optional)
 Build & Run with Docker Compose
 docker-compose up --build
 
@@ -112,7 +111,7 @@ Django backend
 
 PostgreSQL database
 
-📌 Roadmap
+Roadmap
 
  Add business rules (loan limits, interest rates, deadlines)
 
@@ -124,9 +123,9 @@ PostgreSQL database
 
  Deploy to cloud (Railway, Render, or AWS)
 
-🤝 Contributing
+ Contributing
 
-Contributions are welcome! 🎉
+Contributions are welcome!
 
 Fork the project
 
@@ -138,16 +137,16 @@ Push to branch (git push origin feature/xyz)
 
 Create a Pull Request
 
-👨‍💻 Author
+Author
 
 Yevisa Isac
 
-🌍 Computer Science Student @ University of Embu
+Computer Science Student @ University of Embu
 
-💼 Backend Developer | Django REST Framework Enthusiast
+Backend Developer | Django REST Framework Enthusiast
 
 🔗 LinkedIn:https://www.linkedin.com/in/yevisa-isac-b1103234b/
 
-📜 License
+License
 
 This project is licensed under the MIT License.
