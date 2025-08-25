@@ -6,7 +6,7 @@ User = get_user_model()
 
 class GroupModelTests(TestCase):
     def setUp(self):
-        # Create a test user
+        
         self.user = User.objects.create_user(
             username="testuser",
             email="test@example.com",

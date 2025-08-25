@@ -1,6 +1,6 @@
 from rest_framework import viewsets
-from .models import Contribution  # or your contribution model
-from .serializers import ContributionSerializer  # Ensure this import is correct
+from .models import Contribution 
+from .serializers import ContributionSerializer  
 
 class ContributionViewSet(viewsets.ModelViewSet):
     queryset = Contribution.objects.all()

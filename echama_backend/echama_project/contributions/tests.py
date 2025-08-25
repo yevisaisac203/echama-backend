@@ -8,13 +8,13 @@ User = get_user_model()
 
 class ContributionModelTests(TestCase):
     def setUp(self):
-        # Create test user
+        
         self.user = User.objects.create_user(
             username="testuser",
             password="testpass"
         )
 
-        # Create test group
+       
         self.group = Group.objects.create(
             name="Test Group",
             description="A test group",
@@ -22,15 +22,14 @@ class ContributionModelTests(TestCase):
         )
 
     def test_create_contribution(self):
-        # ✅ Add a date field
+       
         contribution = Contribution.objects.create(
             member=self.user,
             group=self.group,
             amount=100,
-            date=date.today()  # <-- FIX HERE
-        )
+            date=date.today()  )
 
-        # Assertions
+        
         self.assertEqual(contribution.amount, 100)
         self.assertEqual(contribution.group, self.group)
         self.assertEqual(contribution.member, self.user)

@@ -12,7 +12,7 @@ class MembershipSerializer(serializers.ModelSerializer):
         read_only_fields = ['id', 'user', 'joined_on', 'is_admin']  # membership creation handled by server
 
 class GroupSerializer(serializers.ModelSerializer):
-    # this is a computed/read-only field that returns members using MembershipSerializer
+    
     members = serializers.SerializerMethodField()
 
     class Meta:

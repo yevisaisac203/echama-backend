@@ -8,13 +8,13 @@ User = get_user_model()
 
 class LoanModelTests(TestCase):
     def setUp(self):
-        # Create test user
+        
         self.user = User.objects.create_user(
             username="testuser",
             password="testpass"
         )
 
-        # Create test group (✅ use created_by instead of admin)
+        
         self.group = Group.objects.create(
             name="Test Group",
             description="A test group",

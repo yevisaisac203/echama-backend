@@ -1,6 +1,6 @@
 from rest_framework import viewsets
-from .models import Loan  # Import your Loan model
-from .serializers import LoanSerializer  # Ensure this import is correct
+from .models import Loan 
+from .serializers import LoanSerializer  
 
 class LoanViewSet(viewsets.ModelViewSet):
     queryset = Loan.objects.all()

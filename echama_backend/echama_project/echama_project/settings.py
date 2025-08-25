@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'groups',
     'contributions',
     'loans',
+    'drf_yasg'
 ]
 
 MIDDLEWARE = [
