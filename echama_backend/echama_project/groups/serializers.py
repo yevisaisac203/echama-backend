@@ -1,18 +1,26 @@
 # groups/serializers.py
 from rest_framework import serializers
 from .models import Group, Membership
-from users.serializers import UserSerializer
+from users.models import User
+
+
+class MemberSummarySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['id', 'username', 'first_name', 'last_name']
+
 
 class MembershipSerializer(serializers.ModelSerializer):
-    user = UserSerializer(read_only=True)
+    user = MemberSummarySerializer(read_only=True)
 
     class Meta:
         model = Membership
         fields = ['id', 'user', 'joined_on', 'is_admin']
         read_only_fields = ['id', 'user', 'joined_on', 'is_admin']  # membership creation handled by server
 
+
 class GroupSerializer(serializers.ModelSerializer):
-    
+
     members = serializers.SerializerMethodField()
 
     class Meta:
@@ -40,3 +48,15 @@ class GroupSerializer(serializers.ModelSerializer):
         group = Group.objects.create(created_by=request.user, **validated_data)
         Membership.objects.create(user=request.user, group=group, is_admin=True)
         return group
+
+
+class AddMemberSerializer(serializers.Serializer):
+    user_id = serializers.IntegerField()
+    is_admin = serializers.BooleanField(required=False, default=False)
+
+    def validate_user_id(self, value):
+        try:
+            self.user = User.objects.get(pk=value)
+        except User.DoesNotExist:
+            raise serializers.ValidationError('No such user.')
+        return value
