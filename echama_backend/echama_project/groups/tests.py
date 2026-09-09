@@ -1,3 +1,4 @@
+from django.core.cache import cache
 from django.db import IntegrityError, transaction
 from django.test import TestCase
 from django.contrib.auth import get_user_model
@@ -42,6 +43,7 @@ class GroupModelTests(TestCase):
 
 class GroupApiTests(TestCase):
     def setUp(self):
+        cache.clear()
         self.client = APIClient()
         self.alice = User.objects.create_user(username="alice", email="alice@example.com", password="Str0ng!Passw0rd")
         self.bob = User.objects.create_user(username="bob", email="bob@example.com", password="Str0ng!Passw0rd")

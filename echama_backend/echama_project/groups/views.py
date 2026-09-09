@@ -1,6 +1,8 @@
+from django.db.models import ProtectedError
 from django.shortcuts import get_object_or_404
 from rest_framework import permissions, status, viewsets
 from rest_framework.decorators import action
+from rest_framework.exceptions import ValidationError
 from rest_framework.response import Response
 
 from .models import Group, Membership
@@ -23,6 +25,12 @@ class GroupViewSet(viewsets.ModelViewSet):
         if self.action == 'leave':
             return [permissions.IsAuthenticated()]
         return super().get_permissions()
+
+    def perform_destroy(self, instance):
+        try:
+            instance.delete()
+        except ProtectedError:
+            raise ValidationError('Cannot delete this group: it still has contribution or loan records.')
 
     @action(detail=True, methods=['post'])
     def add_member(self, request, pk=None):

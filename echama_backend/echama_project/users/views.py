@@ -1,4 +1,6 @@
+from django.db.models import ProtectedError
 from rest_framework import generics, permissions, status, viewsets
+from rest_framework.exceptions import ValidationError
 from rest_framework.response import Response
 from rest_framework.throttling import ScopedRateThrottle
 from rest_framework.views import APIView
@@ -48,3 +50,12 @@ class UserViewSet(viewsets.ModelViewSet):
         if user.is_staff or user.role == 'admin':
             return User.objects.all()
         return User.objects.filter(pk=user.pk)
+
+    def perform_destroy(self, instance):
+        try:
+            instance.delete()
+        except ProtectedError:
+            raise ValidationError(
+                'Cannot delete this user: they still own groups or have financial records '
+                '(contributions/loans). Remove or transfer those first.'
+            )
