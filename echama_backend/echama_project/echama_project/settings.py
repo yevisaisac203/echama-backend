@@ -14,6 +14,8 @@ from datetime import timedelta
 from pathlib import Path
 
 import environ
+import sentry_sdk
+from sentry_sdk.integrations.django import DjangoIntegration
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -185,3 +187,15 @@ if not DEBUG:
     SECURE_HSTS_PRELOAD = True
     SECURE_CONTENT_TYPE_NOSNIFF = True
     SECURE_REFERRER_POLICY = 'same-origin'
+
+# Error monitoring: inert until SENTRY_DSN is set. send_default_pii is left
+# off - this is a fintech app, don't ship user data to a third party by default.
+SENTRY_DSN = env('SENTRY_DSN', default='')
+if SENTRY_DSN:
+    sentry_sdk.init(
+        dsn=SENTRY_DSN,
+        environment=env('SENTRY_ENVIRONMENT', default='production' if not DEBUG else 'development'),
+        integrations=[DjangoIntegration()],
+        send_default_pii=False,
+        traces_sample_rate=env.float('SENTRY_TRACES_SAMPLE_RATE', default=0.0),
+    )
